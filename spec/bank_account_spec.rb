@@ -25,5 +25,11 @@ describe 'BankAccount' do
       expect(transaction_class).to receive(:new).with(10, "debit")
       account.withdraw(10, transaction_class)
     end
+
+    it 'reduces balance by the withdrawal value' do
+      amount.deposit(100, transaction_class)
+      amount.withdraw(40, transaction_class)
+      expect(account.balance).to eq(60)
+    end
   end
 end
