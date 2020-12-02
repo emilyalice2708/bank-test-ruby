@@ -22,6 +22,10 @@ describe 'BankAccount' do
       account.deposit(30, transaction_class)
       expect(account.statement).to include(transaction)
     end
+
+    it 'prevents the user from depositing negative values' do
+      expect { account.deposit(-100) }.to raise_error 'Cannot process negative value'
+    end
   end
 
   describe '#withdraw' do
@@ -50,7 +54,7 @@ describe 'BankAccount' do
 
     it 'prevents the user from withdrawing negative values' do
       account.deposit(100, transaction_class)
-      expect { account.withdraw(-10) }.to raise_error 'Cannot withdraw negative value'
+      expect { account.withdraw(-10) }.to raise_error 'Cannot process negative value'
     end
   end
 

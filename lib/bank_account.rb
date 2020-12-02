@@ -10,13 +10,14 @@ class BankAccount
   end
 
   def deposit(amount, transaction_class = Transaction)
+    check_positive(amount)
     @balance += amount
     @statement << transaction_class.new(credit: amount, debit: nil, balance: @balance)
   end
 
   def withdraw(amount, transaction_class = Transaction)
     check_funds(amount)
-    check_withdrawal(amount)
+    check_positive(amount)
     @balance -= amount
     @statement << transaction_class.new(credit: nil, debit: amount, balance: @balance)
   end
@@ -32,7 +33,7 @@ class BankAccount
     raise 'Insufficient funds' if amount > @balance
   end
 
-  def check_withdrawal(amount)
-    raise 'Cannot withdraw negative value' if amount < 0
+  def check_positive(amount)
+    raise 'Cannot process negative value' if amount < 0
   end
 end
