@@ -40,5 +40,12 @@ describe 'BankAccount' do
       account.withdraw(40, transaction_class)
       expect(account.balance).to eq(60)
     end
+
+    it 'adds the transaction to the statement array' do
+      allow(transaction_class).to receive(:new).and_return(transaction)
+      account.deposit(50, transaction_class)
+      account.withdraw(30, transaction_class)
+      expect(account.statement.count(transaction)).to eq 2
+    end
   end
 end
