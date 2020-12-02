@@ -62,6 +62,8 @@ I'd like to be prevented from withdrawing more than is available to me.
 
 | Bank Account       |  Dependencies   |
 | -------------------- | -------------- |
+| Stores current balance| |
+| Stores statement array of transactions| |
 | Stores all transactions | Transaction Class |
 | Records the date     |   Date  |
 | Statement | Printer Class |
