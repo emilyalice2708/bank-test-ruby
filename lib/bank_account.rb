@@ -13,6 +13,7 @@ class BankAccount
   end
 
   def withdraw(amount, transaction_class = Transaction)
+    @balance -= amount
     transaction_class.new(amount, "debit")
   end
 end

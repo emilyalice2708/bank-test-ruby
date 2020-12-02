@@ -15,6 +15,7 @@ describe 'BankAccount' do
     end
 
     it 'increments balance by the deposit value' do
+      allow(transaction_class).to receive(:new).with(30, "credit")
       account.deposit(30, transaction_class)
       expect(account.balance).to eq 30
     end
@@ -27,8 +28,10 @@ describe 'BankAccount' do
     end
 
     it 'reduces balance by the withdrawal value' do
-      amount.deposit(100, transaction_class)
-      amount.withdraw(40, transaction_class)
+      allow(transaction_class).to receive(:new).with(100, "credit")
+      allow(transaction_class).to receive(:new).with(40, "debit")
+      account.deposit(100, transaction_class)
+      account.withdraw(40, transaction_class)
       expect(account.balance).to eq(60)
     end
   end
