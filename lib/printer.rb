@@ -6,13 +6,13 @@ class Printer
     end
   end
 
+  private
+
   def print_header
     puts 'date || credit || debit || balance'
   end
 
   def format(transaction_value)
-    if !transaction_value.nil?
-      " " + "%.2f" % transaction_value
-    end
+    " " + "%.2f" % transaction_value if !transaction_value.nil?
   end
 end

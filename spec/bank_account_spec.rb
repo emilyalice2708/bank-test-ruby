@@ -47,6 +47,11 @@ describe 'BankAccount' do
       account.deposit(40, transaction_class)
       expect { account.withdraw(50, transaction_class) }.to raise_error 'Insufficient funds'
     end
+
+    it 'prevents the user from withdrawing negative values' do
+      account.deposit(100, transaction_class)
+      expect { account.withdraw(-10) }.to raise_error 'Cannot withdraw negative value'
+    end
   end
 
   describe '#printer' do

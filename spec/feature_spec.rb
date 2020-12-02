@@ -7,6 +7,7 @@ describe 'BankAccount' do
   let(:header) { "date || credit || debit || balance\n" }
   let(:first_transaction) { "02/12/2020 || 50.00 || || 50.00\n" }
   let(:second_transaction) { "02/12/2020 || || 30.00 || 20.00\n" }
+  
   it 'transactions are printed in reverse chronological order' do
     account.deposit(50)
     account.withdraw(30)
