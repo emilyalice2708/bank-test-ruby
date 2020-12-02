@@ -42,6 +42,11 @@ describe 'BankAccount' do
       account.withdraw(30, transaction_class)
       expect(account.statement.count(transaction)).to eq 2
     end
+
+    it 'prevents withdrawals when value is more than current balance' do
+      account.deposit(40, transaction_class)
+      expect { account.withdraw(50, transaction_class) }.to raise_error "Insufficient funds"
+    end
   end
 
   describe '#printer' do

@@ -20,6 +20,7 @@ class BankAccount
   end
 
   def withdraw(amount, transaction_class = Transaction)
+    check_funds(amount)
     @balance -= amount
     @statement << transaction_class.new(credit: nil, debit: amount, balance: @balance)
   end
@@ -27,5 +28,11 @@ class BankAccount
   def print_statement(printer_class = Printer)
     printer = printer_class.new
     printer.print(@statement)
+  end
+
+  private
+
+  def check_funds(amount)
+    raise "Insufficient funds" if amount > @balance
   end
 end
