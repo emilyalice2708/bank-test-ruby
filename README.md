@@ -47,3 +47,4 @@ Run rspec from the root directory:
 $ rspec
 ```
 
+Specification and planning in [planning.md](https://github.com/emilyalice2708/bank-test-ruby/blob/main/planning.md)
