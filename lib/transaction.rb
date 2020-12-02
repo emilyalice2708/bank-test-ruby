@@ -2,9 +2,7 @@ class Transaction
   attr_reader :credit, :debit, :balance, :date
 
   def initialize(credit:, debit:, balance:, time_class: Time)
-    @credit = credit
-    @debit = debit
-    @balance = balance
+    @credit, @debit, @balance = credit, debit, balance
     @time_class = time_class
     @date = current_date(time_class)
   end
