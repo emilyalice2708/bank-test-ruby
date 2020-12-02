@@ -4,12 +4,8 @@ describe 'BankAccount' do
   let(:account) { BankAccount.new }
   let(:transaction) { double :transaction }
   let(:transaction_class) { double :transaction_class, :new => transaction }
-
-  it 'has an empty balance on initialization' do
-    expect(account.balance).to eq 0
-  end
-
-  describe 'deposit' do
+  
+  describe '#deposit' do
     it 'creates a new credit transaction' do
       expect(transaction_class).to receive(:new).with(credit: 30, debit: nil, balance: 30)
       account.deposit(30, transaction_class)
@@ -26,7 +22,7 @@ describe 'BankAccount' do
     end
   end
 
-  describe 'withdraw' do 
+  describe '#withdraw' do 
     it 'creates a new debit transaction' do
       account.deposit(30, transaction_class)
       expect(transaction_class).to receive(:new).with(credit: nil, debit: 10, balance: 20)
