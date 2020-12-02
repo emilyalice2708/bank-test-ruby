@@ -10,9 +10,16 @@ describe 'BankAccount' do
   end
 
   describe 'deposit' do
-    it 'creates a new transaction' do
+    it 'creates a new credit transaction' do
       expect(transaction_class).to receive(:new).with(30, "credit")
       account.deposit(30, transaction_class)
+    end
+  end
+
+  describe 'withdraw' do 
+    it 'creates a new debit transaction' do
+      expect(transaction_class).to receive(:new).with(10, "debit")
+      account.withdraw(10, transaction_class)
     end
   end
 end

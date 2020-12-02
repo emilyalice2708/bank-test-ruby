@@ -10,4 +10,8 @@ class BankAccount
   def deposit(amount, transaction_class = Transaction)
     transaction_class.new(amount, "credit")
   end
+
+  def withdraw(amount, transaction_class = Transaction)
+    transaction_class.new(amount, "debit")
+  end
 end
