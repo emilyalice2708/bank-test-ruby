@@ -2,17 +2,10 @@ require_relative 'transaction'
 require_relative 'printer'
 
 class BankAccount
+  attr_reader :balance, :statement
   def initialize
     @balance = 0
     @statement = []
-  end
-
-  def balance
-    @balance
-  end
-
-  def statement
-    @statement
   end
 
   def deposit(amount, transaction_class = Transaction)
@@ -34,6 +27,6 @@ class BankAccount
   private
 
   def check_funds(amount)
-    raise "Insufficient funds" if amount > @balance
+    raise 'Insufficient funds' if amount > @balance
   end
 end

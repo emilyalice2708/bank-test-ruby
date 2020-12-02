@@ -1,4 +1,4 @@
-class Printer 
+class Printer
   def print(statement)
     print_header
     statement.reverse.each do |transaction|

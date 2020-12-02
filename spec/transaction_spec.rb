@@ -22,7 +22,7 @@ describe 'Transaction' do
 
     it 'stores the date' do
       allow(time_class).to receive(:new).and_return(current_date)
-      allow(current_date).to receive(:strftime).with("%d/%m/%Y").and_return('01/01/1010')
+      allow(current_date).to receive(:strftime).with('%d/%m/%Y').and_return('01/01/1010')
       transaction = Transaction.new(credit: 50, debit: nil, balance: 50, time_class: time_class)
       expect(transaction.date).to eq('01/01/1010')
     end

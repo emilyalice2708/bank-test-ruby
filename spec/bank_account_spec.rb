@@ -3,9 +3,9 @@ require 'bank_account'
 describe 'BankAccount' do
   let(:account) { BankAccount.new }
   let(:transaction) { double :transaction }
-  let(:transaction_class) { double :transaction_class, :new => transaction }
+  let(:transaction_class) { double :transaction_class, new: transaction }
   let(:printer) { double :printer }
-  let(:printer_class) { double :printer_class, :new => printer }
+  let(:printer_class) { double :printer_class, new: printer }
 
   describe '#deposit' do
     it 'creates a new credit transaction' do
@@ -24,7 +24,7 @@ describe 'BankAccount' do
     end
   end
 
-  describe '#withdraw' do 
+  describe '#withdraw' do
     it 'creates a new debit transaction' do
       account.deposit(30, transaction_class)
       expect(transaction_class).to receive(:new).with(credit: nil, debit: 10, balance: 20)
@@ -45,7 +45,7 @@ describe 'BankAccount' do
 
     it 'prevents withdrawals when value is more than current balance' do
       account.deposit(40, transaction_class)
-      expect { account.withdraw(50, transaction_class) }.to raise_error "Insufficient funds"
+      expect { account.withdraw(50, transaction_class) }.to raise_error 'Insufficient funds'
     end
   end
 
