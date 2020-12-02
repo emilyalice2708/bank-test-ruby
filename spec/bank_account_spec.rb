@@ -4,7 +4,7 @@ describe 'BankAccount' do
   let(:account) { BankAccount.new }
   let(:transaction) { double :transaction }
   let(:transaction_class) { double :transaction_class, :new => transaction }
-
+  
   it 'has an empty balance on initialization' do
     expect(account.balance).to eq 0
   end
@@ -16,13 +16,11 @@ describe 'BankAccount' do
     end
 
     it 'increments balance by the deposit value' do
-      allow(transaction_class).to receive(:new)
       account.deposit(30, transaction_class)
       expect(account.balance).to eq 30
     end
 
     it 'adds the transaction to the statement array' do
-      allow(transaction_class).to receive(:new).and_return(transaction)
       account.deposit(30, transaction_class)
       expect(account.statement).to include(transaction)
     end
@@ -35,14 +33,12 @@ describe 'BankAccount' do
     end
 
     it 'reduces balance by the withdrawal value' do
-      allow(transaction_class).to receive(:new)
       account.deposit(100, transaction_class)
       account.withdraw(40, transaction_class)
       expect(account.balance).to eq(60)
     end
 
     it 'adds the transaction to the statement array' do
-      allow(transaction_class).to receive(:new).and_return(transaction)
       account.deposit(50, transaction_class)
       account.withdraw(30, transaction_class)
       expect(account.statement.count(transaction)).to eq 2
