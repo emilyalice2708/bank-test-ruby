@@ -4,7 +4,6 @@ describe 'BankAccount' do
   let(:account) { BankAccount.new }
   let(:transaction_class) { double :transaction_class }
 
-
   it 'has an empty balance on initialization' do
     expect(account.balance).to eq 0
   end
@@ -13,6 +12,11 @@ describe 'BankAccount' do
     it 'creates a new credit transaction' do
       expect(transaction_class).to receive(:new).with(30, "credit")
       account.deposit(30, transaction_class)
+    end
+
+    it 'increments balance by the deposit value' do
+      account.deposit(30, transaction_class)
+      expect(account.balance).to eq 30
     end
   end
 
