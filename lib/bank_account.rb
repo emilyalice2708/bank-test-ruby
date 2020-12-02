@@ -6,4 +6,8 @@ class BankAccount
   def balance
     @balance
   end
+
+  def deposit(amount, transaction_class = Transaction)
+    transaction_class.new(amount, "credit")
+  end
 end
