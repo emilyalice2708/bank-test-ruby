@@ -5,10 +5,13 @@ require 'transaction'
 describe 'BankAccount' do
   let(:account) { BankAccount.new }
   let(:header) { "date || credit || debit || balance\n" }
-  let(:first_transaction) { "02/12/2020 || 50.00 || || 50.00\n" }
-  let(:second_transaction) { "02/12/2020 || || 30.00 || 20.00\n" }
-  
+  let(:first_transaction) { "01/01/1010 || 50.00 || || 50.00\n" }
+  let(:second_transaction) { "01/01/1010 || || 30.00 || 20.00\n" }
+  let(:time) { Time }
+  let(:date) { double :date, strftime: '01/01/1010' }
+
   it 'transactions are printed in reverse chronological order' do
+    allow(time).to receive(:new).and_return(date)
     account.deposit(50)
     account.withdraw(30)
     expect { account.print_statement }.to output(
